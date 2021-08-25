@@ -27,9 +27,8 @@ class ClientController extends AdminController
         $grid = new Grid(new Client());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Nom'));
-        $grid->column('address', __('Adresse'))->sortable()->filter("like")->copyable()->qrcode();
-        $grid->column('photo', __('Photo'))->image();
+        $grid->column('name', __('Nom'))->setAttributes(['style' => 'color:green;']);
+        $grid->column('address', __('Adresse'))->sortable()->filter("like")->copyable()->style('max-width:200px;word-break:break-all;');
 
         $grid->column('created_at', __('Créé le'))->display(function($value){
             return date("d/m/Y", strtotime($value));
@@ -38,6 +37,8 @@ class ClientController extends AdminController
         $grid->column('updated_at', __('Modifié le'))->display(function ($value) {
             return date("d/m/Y", strtotime($value));
         });
+        $grid->column('photo', __('Photo'))->image();
+
 
         return $grid;
     }
@@ -52,7 +53,7 @@ class ClientController extends AdminController
     {
         $show = new Show(Client::findOrFail($id));
 
-        
+
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         $show->field('address', __('Address'));
@@ -73,7 +74,7 @@ class ClientController extends AdminController
         $form = new Form(new Client());
 
         $form->column(2 / 3, function ($form) {
-        $form->text('name', __('Nom'))->required()->inputmask(['mask' => '+2129 9999-9999']);
+        $form->text('name', __('Nom'))->required();
         $form->textarea('address', __('Adresse'));
         });
 
