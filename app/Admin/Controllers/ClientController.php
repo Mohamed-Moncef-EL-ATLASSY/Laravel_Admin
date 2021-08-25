@@ -30,10 +30,14 @@ class ClientController extends AdminController
         $grid->column('name', __('Nom'));
         $grid->column('address', __('Adresse'))->sortable()->filter("like");
         $grid->column('photo', __('Photo'))->image();
+
         $grid->column('created_at', __('Créé le'))->display(function($value){
             return date("d/m/Y", strtotime($value));
-        })->hide();
-        $grid->column('updated_at', __('Modifié le'))->hide();
+        });
+
+        $grid->column('updated_at', __('Modifié le'))->display(function($value){
+            return date("d/m/Y", strtotime($value));
+        });
 
         return $grid;
     }
