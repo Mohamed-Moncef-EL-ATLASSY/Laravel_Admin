@@ -52,6 +52,7 @@ class ClientController extends AdminController
     {
         $show = new Show(Client::findOrFail($id));
 
+        
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         $show->field('address', __('Address'));
@@ -71,9 +72,14 @@ class ClientController extends AdminController
     {
         $form = new Form(new Client());
 
+        $form->column(2 / 3, function ($form) {
         $form->text('name', __('Nom'))->required()->inputmask(['mask' => '+2129 9999-9999']);
         $form->textarea('address', __('Adresse'));
+        });
+
+        $form->column(1 / 3, function ($form) {
         $form->image('photo', __('Photo'));
+        });
 
         return $form;
     }
