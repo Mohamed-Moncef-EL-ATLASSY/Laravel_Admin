@@ -62,7 +62,7 @@ return [
 
         'namespace' => 'App\\Admin\\Controllers',
 
-        'middleware' => ['web', 'admin'],
+        'middleware' => ['web', 'admin', 'admin.lock'],
     ],
 
     /*
@@ -405,6 +405,9 @@ return [
     |
     */
     'extensions' => [
-
+        'material-ui' => [
+            // If the value is set to false, this extension will be disabled
+            'enable' => true
+        ]
     ],
 ];
