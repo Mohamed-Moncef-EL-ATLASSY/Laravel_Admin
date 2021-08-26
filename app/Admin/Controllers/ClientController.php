@@ -28,14 +28,20 @@ class ClientController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('name', __('Nom'));
+
+        $grid->column('products', __('Nombre du produit'))->display(function ($products) {
+            $count = count($products);
+            return "{$count}";
+        });
+
         $grid->column('address', __('Adresse'))->sortable()->filter("like")->copyable();
-        $grid->column('created_at', __('Créé le'))->display(function($value){
+        $grid->column('created_at', __('Crée le'))->display(function($value){
             return date("d/m/Y", strtotime($value)); });
 
         $grid->column('updated_at', __('Modifié le'))->display(function ($value) {
             return date("d/m/Y", strtotime($value)); });
 
-        $grid->column('photo', __('Photo'))->image();
+        $grid->column('photo', __('Photo'))->image()->hide();
 
         return $grid;
     }
