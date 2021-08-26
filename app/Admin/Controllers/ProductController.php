@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Client;
 use App\Models\Product;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -25,13 +26,17 @@ class ProductController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Product());
+        // $grid->column('productDescription', __('Nom de client'));
+        $grid->column('productDescription', __('Nom de client'));
 
-        $grid->column('id', __('Id'));
-        $grid->column('productName', __('ProductName'));
-        $grid->column('productDescription', __('ProductDescription'));
-        $grid->column('productPrice', __('ProductPrice'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+
+        // $grid->column('productDescription', __('ID de client'));
+        $grid->column('productDescription', __('ID de client'));
+
+
+        $grid->column('id', __('ID produit'));
+        $grid->column('productName', __('Nom de produit'));
+        $grid->column('productPrice', __('Prix de produit'));
 
         return $grid;
     }
