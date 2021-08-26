@@ -27,18 +27,15 @@ class ClientController extends AdminController
         $grid = new Grid(new Client());
 
         $grid->column('id', __('Id'));
-        $grid->column('name', __('Nom'))->setAttributes(['style' => 'color:green;']);
-        $grid->column('address', __('Adresse'))->sortable()->filter("like")->copyable()->style('max-width:200px;word-break:break-all;');
-
+        $grid->column('name', __('Nom'));
+        $grid->column('address', __('Adresse'))->sortable()->filter("like")->copyable();
         $grid->column('created_at', __('Créé le'))->display(function($value){
-            return date("d/m/Y", strtotime($value));
-        });
+            return date("d/m/Y", strtotime($value)); });
 
         $grid->column('updated_at', __('Modifié le'))->display(function ($value) {
-            return date("d/m/Y", strtotime($value));
-        });
-        $grid->column('photo', __('Photo'))->image();
+            return date("d/m/Y", strtotime($value)); });
 
+        $grid->column('photo', __('Photo'))->image();
 
         return $grid;
     }
