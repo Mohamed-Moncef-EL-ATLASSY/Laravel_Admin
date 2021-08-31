@@ -8,8 +8,6 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Hamcrest\SelfDescribing;
-use phpDocumentor\Reflection\Types\Self_;
 
 class ProductController extends AdminController
 {
@@ -34,7 +32,9 @@ class ProductController extends AdminController
         $grid->column('client_id', __('ID Client'))
         ->sortable();
 
-        $grid->column('client.name', __('Nom Client'));
+        $grid->column('client.name', __('Nom Client'))
+        // ->sortable()
+        ;
 
         $grid->column('productDescription', __('Description Produit'));
         $grid->column('productPrice', __('Prix Produit'))
